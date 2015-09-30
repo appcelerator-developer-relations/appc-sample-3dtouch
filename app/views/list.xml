@@ -1,0 +1,35 @@
+<Alloy>
+
+	<!-- Create a local instance of the array collection -->
+	<Collection src="array" id="collection" instance="true" />
+
+	<Tab id="tab" title="The Beatles">
+		<Window id="win" title="The Beatles" onFocus="onWindowFocus" onBlur="onWindowBlur">
+			<RightNavButton systemButton="ACTION" onClick="openWebsite" />
+
+			<ListView onItemclick="onListViewItemclick">
+
+				<!-- Bind to the local collection by its ID -->
+				<ListSection dataCollection="$.collection" headerTitle="The Beatles">
+					<ListItem itemId="{id}" image="{image}" title="{name}" />
+
+					<FooterView>
+						<View>
+							<Label class="help">You should be able to find the indexed seachable items for the individual Beatles as well as the searchable user activity of viewing this tab via Spotlight with 'appsearch'. To test the latter switch to the Console tab before you move the app to the background and search.\n\nUse the left navigation button to remove or re-index the individual Beatles. You should always still find this user activity of viewing this tab.\n\nYou should also be able to handoff the activity of viewing the list to another device, even to Mac OS X or an iPhone that doesn't have the app installed, in which case it will open the webpageURL in the browser.</Label>
+						</View>
+					</FooterView>
+				</ListSection>
+
+			</ListView>
+
+		</Window>
+	</Tab>
+
+	<!--
+	To-level buttons outside the root hierarchy of the tab to assign to the
+	window's leftNavButton via the controller depending on the state.
+	-->
+	<Button id="addToIndex" systemButton="ADD" onClick="addToIndex" />
+	<Button id="deleteFromIndex" systemButton="TRASH" onClick="deleteFromIndex" />
+
+</Alloy>

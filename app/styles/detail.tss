@@ -1,0 +1,30 @@
+'.image': {
+	top: 10,
+
+	borderWidth: 5,
+	borderColor: '#eee'
+}
+
+'.name': {
+	top: 10,
+	left: 10,
+	right: 10,
+
+	font: {
+		fontWeight: 'bold',
+		fontSize: 24
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
+}
+
+'.bio': {
+	top: 10,
+	left: 10,
+	right: 10
+}
+
+'.help': {
+	top: 25,
+	left: 10,
+	right: 10
+}

@@ -1,0 +1,9 @@
+'ListView': {
+	style: Ti.UI.iPhone.ListViewStyle.GROUPED
+}
+
+'.help': {
+	top: 15,
+	right: 15,
+	left: 15
+}

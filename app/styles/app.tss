@@ -1,0 +1,58 @@
+/*
+
+This is your global styles file. Selectors and rules you define
+here will be applied throughout your app. However, these rules
+have the lowest priority of any style settings.
+
+For more information, see the 'Style Priorities' section of
+http://docs.appcelerator.com/titanium/latest/#!/guide/Alloy_Styles_and_Themes
+
+For example, the following would apply to all labels, windows,
+and text fields (depending on platform) in your app unless you
+overrode the settings with other TSS, XML, or JS settings:
+
+'Label[platform=android,windows]': {
+	color: '#000' // all platforms except Android and Windows default to black
+}
+
+'TextField[platform=android]': {
+	height: Ti.UI.SIZE
+}
+
+*/
+
+'TabGroup': {
+	tabsBackgroundColor: 'white',
+	tabsTintColor: Alloy.CFG.brandPrimary
+}
+
+'Tab': {
+	icon: '/images/tabIcon.png'
+}
+
+'Window': {
+	backgroundColor: '#fff' // white background instead of default transparent or black
+}
+
+'Window[platform=ios]': {
+	barColor: Alloy.CFG.brandPrimary,
+	navTintColor: '#FFF',
+	translucent: false,
+	titleAttributes: {
+		color: '#FFF'
+	}
+}
+
+// All our ScrollViews are layed out and scroll vertical
+'ScrollView': {
+	layout: 'vertical',
+	contentWidth: Ti.UI.FILE,
+	contentHeight: Ti.UI.SIZE
+}
+
+'.help': {
+	color: '#999',
+	font: {
+		fontSize: 15
+	}
+}

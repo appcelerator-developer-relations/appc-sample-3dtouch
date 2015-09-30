@@ -1,0 +1,6 @@
+<Alloy>
+	<TabGroup>
+		<Require src="list" />
+		<Require src="console" />
+	</TabGroup>
+</Alloy>
