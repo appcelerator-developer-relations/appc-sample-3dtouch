@@ -12,6 +12,11 @@
 
 (function (global) {
 
-	Alloy.Globals.TI_VERSION = parseInt(Ti.version.split('.')[0], 10);
+	var NUMBER_OF_COLUMNS = 4; // Change this to whatever you want
 
+	Alloy.Globals.TI_VERSION = parseInt(Ti.version.split('.')[0], 10);
+	Alloy.Globals.imageWidth = Alloy.Globals.imageHeight = (Ti.Platform.displayCaps.platformWidth / NUMBER_OF_COLUMNS);// - (2 * NUMBER_OF_COLUMNS);
+
+	Alloy.Globals.contentWidth = Ti.Platform.displayCaps.platformWidth;
+	Alloy.Globals.contentHeight = Ti.Platform.displayCaps.platformHeight-65;
 })(this);

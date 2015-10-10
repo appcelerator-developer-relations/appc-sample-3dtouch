@@ -1,6 +1,9 @@
 <Alloy>
-	<TabGroup>
-		<Require src="list" />
-		<Require src="console" />
-	</TabGroup>
+	<NavigationWindow id="nav">
+		<Window title="3D Touch Demo">
+			<RightNavButton systemButton="ADD" onClick="takePicture" />
+			<ScrollView id="scrollView" />
+			<Label id="placeholder" text="No pictures, yet!" />
+		</Window>
+	</NavigationWindow>
 </Alloy>

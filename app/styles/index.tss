@@ -1,0 +1,11 @@
+"#scrollView": {
+	top: 0,
+	layout: "horizontal",
+	scrollType: "vertical",
+	contentWidth: Alloy.Globals.contentWidth,
+	contentHeight: Alloy.Globals.contentHeight
+}
+
+"#placeholder": {
+	color: "#aaa"
+}
