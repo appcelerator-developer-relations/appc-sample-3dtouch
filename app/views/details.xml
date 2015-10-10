@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="window" onOpen="refreshUI">
-		<ImageView id="imageView" />
+	<Window title="{filename}">
+		<ImageView image="{filepath}" />
 	</Window>
 </Alloy>
