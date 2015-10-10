@@ -21,17 +21,9 @@ overrode the settings with other TSS, XML, or JS settings:
 
 */
 
-'TabGroup': {
-	tabsBackgroundColor: 'white',
-	tabsTintColor: Alloy.CFG.brandPrimary
-}
-
-'Tab': {
-	icon: '/images/tabIcon.png'
-}
-
 'Window': {
-	backgroundColor: '#fff' // white background instead of default transparent or black
+	backgroundColor: '#fff', // white background instead of default transparent or black
+	backButtonTitle: ""
 }
 
 'Window[platform=ios]': {
@@ -40,19 +32,5 @@ overrode the settings with other TSS, XML, or JS settings:
 	translucent: false,
 	titleAttributes: {
 		color: '#FFF'
-	}
-}
-
-// All our ScrollViews are layed out and scroll vertical
-'ScrollView': {
-	layout: 'vertical',
-	contentWidth: Ti.UI.FILE,
-	contentHeight: Ti.UI.SIZE
-}
-
-'.help': {
-	color: '#999',
-	font: {
-		fontSize: 15
 	}
 }

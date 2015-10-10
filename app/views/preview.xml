@@ -1,0 +1,8 @@
+<Alloy>
+	<View class="preview">
+		<View class="header">
+			<Label id="label" />
+		</View>
+		<ImageView id="image" />
+	</View>
+</Alloy>

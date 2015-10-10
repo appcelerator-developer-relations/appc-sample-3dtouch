@@ -1,0 +1,21 @@
+".preview": {
+	layout: "vertical",
+	backgroundColor: "#fff",
+	height: Ti.UI.SIZE
+}
+
+".header": {
+	height: 55
+}
+
+"#label": {
+	color: "#333",
+	height: Ti.UI.SIZE,
+	font: {
+		fontWeight: "bold"
+	}
+}
+
+"#image": {
+	height: Ti.UI.SIZE
+}
