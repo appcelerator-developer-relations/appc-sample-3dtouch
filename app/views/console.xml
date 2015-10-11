@@ -1,0 +1,11 @@
+<Alloy>
+	<Tab title="Console">
+		<Window title="Console">
+
+			<RightNavButton systemButton="TRASH" onClick="clearLogs" />
+
+			<TextArea id="log" />
+
+		</Window>
+	</Tab>
+</Alloy>

@@ -1,5 +1,5 @@
 <Alloy>
-	<Window title="{time}">
+	<Window title="{time}" onClose="onWindowClose">
 		<RightNavButton systemButton="TRASH" onClick="deletePicture" />
 
 		<ImageView image="{filepath}" />

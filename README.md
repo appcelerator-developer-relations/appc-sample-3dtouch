@@ -15,3 +15,4 @@
 * PR shortcutitems: https://github.com/appcelerator/titanium_mobile/pull/7236
 * Docs previewactions: https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.iOS.PreviewContext
 * PR previewactions: https://github.com/appcelerator/titanium_mobile/pull/7235
+* Apple Docs: https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html#//apple_ref/doc/uid/TP40016543-CH1-SW1

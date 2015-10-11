@@ -1,17 +1,7 @@
 <Alloy>
-	<Collection src="picture" />
-
-	<NavigationWindow id="nav">
-		<Window title="3D Touch Demo">
-			<RightNavButton systemButton="ADD" onClick="takePicture" />
-
-			<ScrollView id="scrollView" dataCollection="picture">
-				<Require src="thumbnail" />
-			</ScrollView>
-
-			<Label id="placeholder" text="Use + to take your first picture!" />
-
-		</Window>
-	</NavigationWindow>
-
+	<TabGroup>
+		<Require src="list" />
+		<Require src="apis" />
+		<Require src="console" />
+	</TabGroup>
 </Alloy>

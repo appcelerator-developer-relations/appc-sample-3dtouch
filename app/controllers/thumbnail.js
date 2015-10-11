@@ -1,8 +1,5 @@
 (function constructor(args) {
 
-	console.log($model.toJSON());
-	console.log($model.__transform);
-
 	if (Ti.UI.iOS.forceTouchSupported) {
 
 		var previewContext = Ti.UI.iOS.createPreviewContext({
@@ -61,7 +58,6 @@ function sendPicture() {
 }
 
 function deletePicture() {
-	Ti.Filesystem.getFile($model.transform().filepath).deleteFile();
 
 	var appShortcuts = Ti.UI.iOS.createApplicationShortcuts();
 	var dynamicShortcuts = appShortcuts.listDynamicShortcuts();
@@ -72,11 +68,17 @@ function deletePicture() {
 
 	if (detailsShortcut && detailsShortcut.userInfo.filename === $model.get('filename')) {
 
-		// Remove the existing details shortcut item
-		appShortcuts.removeShortcutItem({
+		var params = {
 			type: 'details'
-		});
+		};
+
+		// Remove the existing details shortcut item
+		appShortcuts.removeShortcutItem(params);
+
+		log.args('Ti.UI.iOS.ApplicationShortcuts.removeShortcutItem', params);
 	}
+
+	Ti.Filesystem.getFile($model.transform().filepath).deleteFile();
 
 	$model.destroy();
 }

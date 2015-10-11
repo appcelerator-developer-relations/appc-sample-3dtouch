@@ -1,10 +1,12 @@
+var log = require('log');
+
+var appShortcuts = Ti.UI.iOS.createApplicationShortcuts();
+
 (function constructor(args) {
 
-	var appShortcuts = Ti.UI.iOS.createApplicationShortcuts();
+	removeDetailsShortcut();
 
-	removeShortcut();
-
-	appShortcuts.addShortcutItem({
+	var params = {
 		type: 'details',
 		title: 'Open last picture',
 		subtitle: $model.get('time'),
@@ -16,34 +18,38 @@
 		userInfo: {
 			filename: $model.get('filename')
 		}
-	});
+	};
+
+	appShortcuts.addShortcutItem(params);
+
+	log.args('Ti.UI.iOS.ApplicationShortcuts.addShortcutItem', params);
 
 })(arguments[0] || {});
 
-function removeShortcut() {
-	var appShortcuts = Ti.UI.iOS.createApplicationShortcuts();
+function removeDetailsShortcut() {
 
-	// This check is not required, just here as example
-	if (appShortcuts.dynamicShortcutExists({
-			type: 'details'
-		})) {
+	// When called from deletePicture() we don't need to check the userInfo
+	// !!!!!!!!! Remove the details shortcutItem we've added in the constructor
 
-		// Remove the existing details shortcut item
-		appShortcuts.removeShortcutItem({
-			type: 'details'
-		});
-	}
+	var params = {
+		type: 'details'
+	};
 
-	// Or, since details is the only dynamic type, we could also do:
-	// appShortcuts.removeAllDynamicShortcuts();
+	appShortcuts.removeShortcutItem(params);
+
+	log.args('Ti.UI.iOS.ApplicationShortcuts.removeShortcutItem', params);
 }
 
 function deletePicture() {
-	Ti.Filesystem.getFile($model.transform().filepath).deleteFile();
+	removeDetailsShortcut();
 
-	removeShortcut();
+	Ti.Filesystem.getFile($model.transform().filepath).deleteFile();
 
 	$model.destroy();
 
 	Alloy.Globals.closeDetails();
+}
+
+function onWindowClose() {
+	Alloy.Globals.detailsWindow = null;
 }
