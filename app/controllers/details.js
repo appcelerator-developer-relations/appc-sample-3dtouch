@@ -8,7 +8,11 @@
 		type: 'details',
 		title: 'Open last picture',
 		subtitle: $model.get('time'),
-		icon: '/images/shortcutItemIcon.png',
+
+		// FIXME: https://jira.appcelerator.org/browse/TIMOB-19709
+		// icon: 'images/shortcutItemIcon.png',
+		icon: '6ce9fb071294c440a20ff73b7c09fef2082c2206',
+
 		userInfo: {
 			filename: $model.get('filename')
 		}
@@ -29,6 +33,9 @@ function removeShortcut() {
 			type: 'details'
 		});
 	}
+
+	// Or, since details is the only dynamic type, we could also do:
+	// appShortcuts.removeAllDynamicShortcuts();
 }
 
 function deletePicture() {
