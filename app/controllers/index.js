@@ -1,5 +1,7 @@
 var moment = require('alloy/moment');
 
+var detailsWindow;
+
 (function constructor(args) {
 
 	Ti.App.iOS.addEventListener("shortcutitemclick", onShortcutitemclick);
@@ -8,24 +10,35 @@ var moment = require('alloy/moment');
 
 	Alloy.Collections.picture.fetch();
 
-	Alloy.Globals.nav = $.nav;
+	Alloy.Globals.openDetails = openDetails;
+	Alloy.Globals.closeDetails = closeDetails;
 
 	$.nav.open();
 
 })(arguments[0] || {});
 
-function onCollectionChange() {
-	$.placeholder.visible = !Alloy.Collections.picture.length;
-}
-
 function onShortcutitemclick(e) {
 
-	console.log(e);
-
-	if (true) {
+	// FIXME: https://jira.appcelerator.org/browse/TIMOB-19708
+	if (e.title === 'Take photo') {
 		takePicture();
-	}
 
+	} else if (e.title === 'Open last picture') {
+
+		var model = Alloy.Collections.picture.get(e.userInfo.filename);
+
+		if (!model) {
+			return alert('Picture not found: ' + e.userInfo.filename);
+		}
+
+		Alloy.Globals.openDetails(Alloy.createController("details", {
+			$model: model
+		}).getView());
+	}
+}
+
+function onCollectionChange() {
+	$.placeholder.visible = !Alloy.Collections.picture.length;
 }
 
 function takePicture() {
@@ -42,13 +55,29 @@ function takePicture() {
 }
 
 function addPicture(picture) {
-	var filename = moment().format() + '.jpg';
-
+	var filename = Ti.Platform.createUUID() + '.jpg';
+	
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
 	file.write(picture);
 
 	Alloy.Collections.picture.create({
-		filename: filename,
-		filepath: file.nativePath
+		time: moment().format(),
+		filename: filename
 	});
+}
+
+function openDetails(window) {
+
+	closeDetails();
+
+	detailsWindow = window;
+
+	$.nav.openWindow(detailsWindow);
+}
+
+function closeDetails() {
+
+	if (detailsWindow) {
+		$.nav.closeWindow(detailsWindow);
+	}
 }

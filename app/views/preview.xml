@@ -1,6 +1,6 @@
 <Alloy>
 	<View>
-		<Label text="{filename}" />
+		<Label text="{time}" />
 		<ImageView text="{filepath}" />
 	</View>
 </Alloy>
