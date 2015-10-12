@@ -1,7 +1,17 @@
 <Alloy>
-	<TabGroup>
+	
+	<TabGroup if="Alloy.Globals.requiredVersion">
 		<Require src="list" />
 		<Require src="apis" />
 		<Require src="console" />
 	</TabGroup>
+
+	<!--
+	FIXME: https://jira.appcelerator.org/browse/ALOY-1317
+	Default top-level ID doesn't take if-attribute into account
+	-->
+	<Window id="index" if="!Alloy.Globals.requiredVersion">
+		<Label>This sample requires Titanium 5.1 or later</Label>
+	</Window>
+
 </Alloy>
