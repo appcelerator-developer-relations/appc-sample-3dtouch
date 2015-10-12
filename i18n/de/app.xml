@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="take_photo_subtitle">Ein neues Foto aufnehmen</string>
+	<string name="take_photo_title">Foto aufnehmen</string>
+</resources>

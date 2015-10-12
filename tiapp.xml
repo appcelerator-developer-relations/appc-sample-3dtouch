@@ -21,14 +21,23 @@
                 <key>UIApplicationShortcutItems</key>
                 <array>
                     <dict>
+                    	<!-- Icon of the shortcut -->
                         <key>UIApplicationShortcutItemIconType</key>
                         <string>UIApplicationShortcutIconTypeAdd</string>
-                        <key>UIApplicationShortcutItemSubtitle</key>
-                        <string>Take a brand new photo</string>
+                        
+                        <!-- Localized title of the shortcut. Can also be non-localized -->
                         <key>UIApplicationShortcutItemTitle</key>
-                        <string>Take photo</string>
+                        <string>take_photo_title</string>
+
+                        <!-- Localized subtitle of the shortcut. Can also be non-localized -->
+                        <key>UIApplicationShortcutItemSubtitle</key>
+                        <string>take_photo_subtitle</string>
+                        
+                        <!-- Type of shortcut, used to identify a shortcut, must be unique -->
                         <key>UIApplicationShortcutItemType</key>
                         <string>NewPhoto</string>
+                        
+                        <!-- Dictionary (Object) of custom keys you can use in the "shortcutitemclick" event -->
                         <key>UIApplicationShortcutItemUserInfo</key>
                         <dict>
                             <key>myCustomKey</key>
