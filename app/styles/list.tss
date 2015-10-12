@@ -1,0 +1,11 @@
+'#scrollView': {
+	top: 0,
+	layout: 'horizontal',
+	scrollType: 'vertical',
+	contentWidth: Ti.UI.FILL,
+	contentHeight: Ti.UI.SIZE
+}
+
+'#placeholder': {
+	color: '#aaa'
+}

@@ -1,0 +1,3 @@
+<Alloy>
+	<ImageView image="{filepath}" onClick="openDetails" />
+</Alloy>

@@ -1,0 +1,17 @@
+<Alloy>
+	<Collection src="picture" />
+
+	<Tab id="tab" title="Pictures">
+		<Window title="Pictures">
+			<RightNavButton systemButton="ADD" onClick="takePicture" />
+
+			<ScrollView id="scrollView" dataCollection="picture">
+				<Require src="thumbnail" />
+			</ScrollView>
+
+			<Label id="placeholder" text="Use + to take your first picture!" />
+
+		</Window>
+	</Tab>
+
+</Alloy>

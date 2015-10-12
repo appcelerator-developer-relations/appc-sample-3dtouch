@@ -1,0 +1,6 @@
+'ImageView': {
+	width: Alloy.Globals.thumbnailSize,
+	height: Alloy.Globals.thumbnailSize,
+	top: 0,
+	left: 0
+}

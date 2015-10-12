@@ -1,0 +1,17 @@
+<Alloy>
+	<Tab title="APIs">
+		<Window title="APIs" layout="vertical">
+
+			<Button onClick="listStaticShortcuts" top="20">listStaticShortcuts()</Button>
+
+			<Button onClick="listDynamicShortcuts" top="20">listDynamicShortcuts()</Button>
+
+			<Button onClick="dynamicShortcutExists" top="20">dynamicShortcutExists({type:'details'})</Button>
+
+			<Button onClick="removeShortcutItem" top="20">removeShortcutItem({type:'details'})</Button>
+
+			<Button onClick="removeAllDynamicShortcuts" top="20">removeAllDynamicShortcuts()</Button>
+
+		</Window>
+	</Tab>
+</Alloy>

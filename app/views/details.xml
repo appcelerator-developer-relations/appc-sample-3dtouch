@@ -1,5 +1,7 @@
 <Alloy>
-	<Window id="window" onOpen="refreshUI">
-		<ImageView id="imageView" />
+	<Window title="{time}" onClose="onWindowClose">
+		<RightNavButton systemButton="TRASH" onClick="deletePicture" />
+
+		<ImageView image="{filepath}" />
 	</Window>
 </Alloy>

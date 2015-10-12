@@ -10,13 +10,12 @@
 //
 // Alloy.Globals.someGlobalFunction = function(){};
 
-(function (global) {
+(function(global) {
 
-	var NUMBER_OF_COLUMNS = 4; // Change this to whatever you want
+	// FIXME: 25% does not have the same result
+	Alloy.Globals.thumbnailSize = Ti.Platform.displayCaps.platformWidth / 4;
 
-	Alloy.Globals.TI_VERSION = parseInt(Ti.version.split('.')[0], 10);
-	Alloy.Globals.imageWidth = Alloy.Globals.imageHeight = (Ti.Platform.displayCaps.platformWidth / NUMBER_OF_COLUMNS);// - (2 * NUMBER_OF_COLUMNS);
+	var versions = Ti.version.split('.');
+	Alloy.Globals.requiredVersion = (parseInt(versions[0], 10) >= 5 && parseInt(versions[1], 10) >= 1);
 
-	Alloy.Globals.contentWidth = Ti.Platform.displayCaps.platformWidth;
-	Alloy.Globals.contentHeight = Ti.Platform.displayCaps.platformHeight-65;
 })(this);
