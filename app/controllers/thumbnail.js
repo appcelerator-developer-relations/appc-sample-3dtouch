@@ -1,16 +1,15 @@
+var log = require('log');
+
 (function constructor(args) {
 
-	if (Ti.UI.iOS.forceTouchSupported) {
+	var previewContext = Ti.UI.iOS.createPreviewContext({
+		preview: createPreview(),
+		actions: createActions(),
+		contentHeight: 400,
+		pop: openDetails
+	});
 
-		var previewContext = Ti.UI.iOS.createPreviewContext({
-			preview: createPreview(),
-			actions: createActions(),
-			contentHeight: 400,
-			pop: openDetails
-		});
-
-		imageView.setPreviewContext(previewContext);
-	}
+	$.imageView.setPreviewContext(previewContext);
 
 })(arguments[0] || {});
 
