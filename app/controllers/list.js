@@ -19,11 +19,10 @@ function onShortcutitemclick(e) {
 
 	log.args('Ti.App.iOS:shortcutitemclick', e);
 
-	// FIXME: https://jira.appcelerator.org/browse/TIMOB-19708
-	if (e.title === 'Take photo') {
+	if (e.itemtype === 'NewPhoto') {
 		takePicture();
 
-	} else if (e.title === 'Open last picture') {
+	} else if (e.itemtype === 'details') {
 
 		var model = Alloy.Collections.picture.get(e.userInfo.filename);
 

@@ -20,11 +20,9 @@ function listDynamicShortcuts() {
 }
 
 function dynamicShortcutExists() {
-	var res = appShortcuts.dynamicShortcutExists({
-		type: 'details'
-	});
+	var res = appShortcuts.dynamicShortcutExists('details');
 
-	log.args('Ti.UI.iOS.ApplicationShortcuts.dynamicShortcutExists', res);
+	log.args('Ti.UI.iOS.ApplicationShortcuts.dynamicShortcutExists', 'details', res);
 
 	if (!res) {
 		Ti.UI.createAlertDialog({
@@ -34,10 +32,21 @@ function dynamicShortcutExists() {
 	}
 }
 
-function removeShortcutItem() {
-	appShortcuts.removeShortcutItem({
-		type: 'details'
-	});
+function getDynamicShortcut() {
+	var res = appShortcuts.getDynamicShortcut('details');
+
+	log.args('Ti.UI.iOS.ApplicationShortcuts.getDynamicShortcut', 'details', res);
+
+	if (!res) {
+		Ti.UI.createAlertDialog({
+			title: 'Does not exist',
+			message: 'Open a picture to create a dynamic shortcut.'
+		}).show();
+	}
+}
+
+function removeDynamicShortcut() {
+	appShortcuts.removeDynamicShortcut('details');
 
 	Ti.UI.createAlertDialog({
 		title: 'Removed',

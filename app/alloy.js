@@ -16,6 +16,6 @@
 	Alloy.Globals.thumbnailSize = Ti.Platform.displayCaps.platformWidth / 4;
 
 	var versions = Ti.version.split('.');
-	Alloy.Globals.requiredVersion = (parseInt(versions[0], 10) >= 5 && parseInt(versions[1], 10) >= 1);
+	Alloy.Globals.isSupported = (parseInt(versions[0], 10) >= 5 && parseInt(versions[1], 10) >= 1 && Ti.UI.iOS.forceTouchSupported);
 
 })(this);

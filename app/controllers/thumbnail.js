@@ -1,16 +1,15 @@
+var log = require('log');
+
 (function constructor(args) {
 
-	if (Ti.UI.iOS.forceTouchSupported) {
+	var previewContext = Ti.UI.iOS.createPreviewContext({
+		preview: createPreview(),
+		actions: createActions(),
+		contentHeight: 400,
+		pop: openDetails
+	});
 
-		var previewContext = Ti.UI.iOS.createPreviewContext({
-			preview: createPreview(),
-			actions: createActions(),
-			contentHeight: 400,
-			pop: openDetails
-		});
-
-		imageView.setPreviewContext(previewContext);
-	}
+	$.imageView.setPreviewContext(previewContext);
 
 })(arguments[0] || {});
 
@@ -60,22 +59,14 @@ function sendPicture() {
 function deletePicture() {
 
 	var appShortcuts = Ti.UI.iOS.createApplicationShortcuts();
-	var dynamicShortcuts = appShortcuts.listDynamicShortcuts();
-
-	var detailsShortcut = _.find(dynamicShortcuts, function(shortcut) {
-		return shortcut.type === 'details';
-	});
+	var detailsShortcut = appShortcuts.getDynamicShortcut('details');
 
 	if (detailsShortcut && detailsShortcut.userInfo.filename === $model.get('filename')) {
 
-		var params = {
-			type: 'details'
-		};
-
 		// Remove the existing details shortcut item
-		appShortcuts.removeShortcutItem(params);
+		appShortcuts.removeDynamicShortcut('details');
 
-		log.args('Ti.UI.iOS.ApplicationShortcuts.removeShortcutItem', params);
+		log.args('Ti.UI.iOS.ApplicationShortcuts.removeDynamicShortcut', 'details');
 	}
 
 	Ti.Filesystem.getFile($model.transform().filepath).deleteFile();
