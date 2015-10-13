@@ -50,7 +50,11 @@ function takePicture() {
 	Ti.Media[fn]({
 		allowEditing: true,
 		success: function(e) {
-			addPicture(e.media);
+
+			// FIXME: we need to wait for the camera to close or our preview actions won't work
+			setTimeout(function() {
+				addPicture(e.media);
+			}, 500);
 		}
 	});
 }
