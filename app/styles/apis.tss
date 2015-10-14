@@ -1,0 +1,7 @@
+"Button": {
+	backgroundColor: Alloy.CFG.brandPrimary,
+	tintColor: "#fff",
+	width: 300,
+	height: 40,
+	borderRadius: 4
+}
