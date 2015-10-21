@@ -1,12 +1,14 @@
 'View': {
-	layout: 'vertical',
-	backgroundColor: '#fff',
 	height: Ti.UI.SIZE
+
+	layout: 'vertical',
+	backgroundColor: '#fff'
 }
 
 'Label': {
-	color: '#333',
 	height: 55,
+
+	color: '#333',
 	font: {
 		fontWeight: 'bold'
 	}

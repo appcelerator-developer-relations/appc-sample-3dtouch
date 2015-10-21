@@ -1,20 +1,26 @@
 var log = require('log');
 
+/**
+ * I wrap code that executes on creation in a self-executing function just to
+ * keep it organised, not to protect global scope like it would in alloy.js
+ */
 (function constructor(args) {
 
-	var previewContext = Ti.UI.iOS.createPreviewContext({
-		preview: createPreview(),
-		actions: createActions(),
-		contentHeight: 400,
-		pop: openDetails
-	});
+	if (Ti.UI.iOS.forceTouchSupported) {
+		var previewContext = Ti.UI.iOS.createPreviewContext({
+			preview: createPreview(),
+			actions: createActions(),
+			contentHeight: 400,
+			pop: openDetails
+		});
 
-	$.imageView.setPreviewContext(previewContext);
+		$.imageView.setPreviewContext(previewContext);
+	}
 
 })(arguments[0] || {});
 
 function createPreview() {
-	return Alloy.createController("preview", {
+	return Alloy.createController('preview', {
 		$model: $model
 	}).getView();
 }
@@ -22,28 +28,28 @@ function createPreview() {
 function createActions() {
 
 	var sendAction = Ti.UI.iOS.createPreviewAction({
-		title: "Send per Mail",
+		title: 'Send per Mail',
 		style: Ti.UI.iOS.PREVIEW_ACTION_STYLE_DEFAULT
 	});
 
-	sendAction.addEventListener("click", sendPicture);
+	sendAction.addEventListener('click', sendPicture);
 
 	var confirmAction = Ti.UI.iOS.createPreviewAction({
-		title: "Confirm",
+		title: 'Confirm',
 		style: Ti.UI.iOS.PREVIEW_ACTION_STYLE_DESTRUCTIVE
 	});
 
 	var cancelAction = Ti.UI.iOS.createPreviewAction({
-		title: "Cancel"
+		title: 'Cancel'
 	});
 
 	var deleteAction = Ti.UI.iOS.createPreviewActionGroup({
-		title: "Delete",
+		title: 'Delete',
 		actions: [confirmAction, cancelAction],
 		style: Ti.UI.iOS.PREVIEW_ACTION_STYLE_DESTRUCTIVE
 	});
 
-	confirmAction.addEventListener("click", deletePicture);
+	confirmAction.addEventListener('click', deletePicture);
 
 	return [sendAction, deleteAction];
 }
@@ -75,7 +81,5 @@ function deletePicture() {
 }
 
 function openDetails() {
-	Alloy.Globals.openDetails(Alloy.createController("details", {
-		$model: $model
-	}).getView());
+	Alloy.Globals.openDetails($model);
 }

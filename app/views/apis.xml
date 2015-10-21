@@ -2,21 +2,17 @@
 	<Tab title="APIs">
 		<Window title="APIs" layout="vertical">
 
-			<ImageView image="/images/shortcutItemIcon.png" />
+			<Button onClick="listStaticShortcuts">listStaticShortcuts()</Button>
 
-			<ImageView image="images/shortcutItemIcon.png" />
+			<Button onClick="listDynamicShortcuts">listDynamicShortcuts()</Button>
 
-			<Button onClick="listStaticShortcuts" top="20">listStaticShortcuts()</Button>
+			<Button onClick="dynamicShortcutExists">dynamicShortcutExists('details')</Button>
 
-			<Button onClick="listDynamicShortcuts" top="20">listDynamicShortcuts()</Button>
+			<Button onClick="getDynamicShortcut">getDynamicShortcut('details')</Button>
 
-			<Button onClick="dynamicShortcutExists" top="20">dynamicShortcutExists('details')</Button>
+			<Button onClick="removeDynamicShortcut">removeDynamicShortcut('details')</Button>
 
-			<Button onClick="getDynamicShortcut" top="20">getDynamicShortcut('details')</Button>
-
-			<Button onClick="removeDynamicShortcut" top="20">removeDynamicShortcut('details')</Button>
-
-			<Button onClick="removeAllDynamicShortcuts" top="20">removeAllDynamicShortcuts()</Button>
+			<Button onClick="removeAllDynamicShortcuts">removeAllDynamicShortcuts()</Button>
 
 		</Window>
 	</Tab>

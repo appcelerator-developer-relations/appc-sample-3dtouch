@@ -35,6 +35,8 @@ overrode the settings with other TSS, XML, or JS settings:
 }
 
 'Window[platform=ios]': {
+
+	// Style the TabGroup's navigation bar
 	barColor: Alloy.CFG.brandPrimary,
 	navTintColor: '#FFF',
 	translucent: false,

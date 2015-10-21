@@ -1,13 +1,18 @@
 # iOS 9 3D Touch Sample App
 
+
+
 ## TODO
 
 * Thank Ben for shortcutitems: https://github.com/appcelerator/titanium_mobile/pull/7236
 * How to simulate shortcutitem: https://github.com/DeskConnect/SBShortcutMenuSimulator
 	IN THAT DIR!
 	echo 'com.appcelerator.sample.3dtouch' | nc 127.0.0.1 8000
-* How to do dynamic shortcutitem: remove/add item for last picture viewed and use image filename as subtitle and image itself (resized) as icon
 * We cant store the full path because it changes every time you do a new build to iOS Sim
+* Check if https://jira.appcelerator.org/browse/ALOY-1317 is resolved in Alloy shipping with 5.1
+* Is it Force Touch or 3D touch?!
+* Check we need to wait for the camera to close or our preview actions won't work
+* Find name for type of image require dfo ricon
 
 ## Getting the sample
 

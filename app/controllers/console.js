@@ -19,6 +19,8 @@ function showLogs() {
 }
 
 function clearLogs() {
+
+	// Clear the public property holding the log history
 	log.history = '';
 
 	showLogs();

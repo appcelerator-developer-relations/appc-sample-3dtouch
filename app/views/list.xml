@@ -1,14 +1,18 @@
 <Alloy>
+
+	<!-- Create a global instance of the picture collection -->
 	<Collection src="picture" />
 
 	<Tab id="tab" title="Pictures">
 		<Window title="Pictures">
-			<RightNavButton systemButton="ADD" onClick="takePicture" />
+			<RightNavButton systemButton="ADD" onClick="addPicture" />
 
+			<!-- For each picture model add a thumbnail view to the ScrollView -->
 			<ScrollView id="scrollView" dataCollection="picture">
 				<Require src="thumbnail" />
 			</ScrollView>
 
+			<!-- Hidden by the controller when the collection is not empty -->
 			<Label id="placeholder" text="Use + to take your first picture!" />
 
 		</Window>

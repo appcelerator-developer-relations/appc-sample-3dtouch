@@ -1,5 +1,6 @@
 <Alloy>
 	
+	<!-- For supported environments (see alloy.js) -->
 	<TabGroup if="Alloy.Globals.isSupported">
 		<Require src="list" />
 		<Require src="apis" />
@@ -7,11 +8,13 @@
 	</TabGroup>
 
 	<!--
+	For unsupported environments
+
 	FIXME: https://jira.appcelerator.org/browse/ALOY-1317
 	Default top-level ID doesn't take if-attribute into account
 	-->
 	<Window id="index" if="!Alloy.Globals.isSupported">
-		<Label>This sample requires Titanium 5.1, iOS 9.0 and an iPhone 6S or later.</Label>
+		<Label>This sample requires Titanium 5.1.</Label>
 	</Window>
 
 </Alloy>
