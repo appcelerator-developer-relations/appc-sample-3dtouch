@@ -29,6 +29,9 @@ var appShortcuts;
 			// A grey-scale icon of 35x35dp
 			icon: 'images/shortcutItemIcon.png',
 
+			// Or a system-provided icon
+			// icon: Ti.UI.iOS.SHORTCUT_ICON_TYPE_LOVE,
+
 			// A custom payload
 			userInfo: {
 				filename: $model.get('filename')

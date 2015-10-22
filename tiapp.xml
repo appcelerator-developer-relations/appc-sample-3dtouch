@@ -49,7 +49,7 @@
                         
                         <!-- Type used to identify the action in the event listener -->
                         <key>UIApplicationShortcutItemType</key>
-                        <string>NewPhoto</string>
+                        <string>add</string>
                         
                         <!-- Custom dictionary (object) to receive in the event -->
                         <key>UIApplicationShortcutItemUserInfo</key>

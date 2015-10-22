@@ -34,8 +34,8 @@ function onShortcutitemclick(e) {
 	log.args('Ti.App.iOS:shortcutitemclick', e);
 
 	// The static shortcut we've set in tiapp.xml
-	if (e.itemtype === 'NewPhoto') {
-		takePicture();
+	if (e.itemtype === 'add') {
+		addPicture();
 
 		// The dynamic shortcut we set in details.js
 	} else if (e.itemtype === 'details') {
@@ -77,27 +77,30 @@ function addPicture() {
 		mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO],
 		success: function(e) {
 
-			// FIXME: we need to wait for the camera to close or our preview actions won't work
-			// setTimeout(function() {
+			// FIXME: https://jira.appcelerator.org/browse/TIMOB-19764
+			// We need to wait for the photo gallery to close or our preview actions won't work
+			setTimeout(function() {
 
-			// Create a unique filename
-			var filename = Ti.Platform.createUUID() + '.jpg';
+				// Create a unique filename
+				var filename = Ti.Platform.createUUID() + '.jpg';
 
-			// Write the photo data to the file under the applicationDataDirectory
-			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
-			file.write(e.media);
+				// Create the file under the applicationDataDirectory
+				var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
 
-			// Add the model to the collection
-			Alloy.Collections.picture.create({
+				// Write a square version of the selected media to the file
+				file.write(e.media.imageAsThumbnail(e.media.width));
 
-				// Set the time the picture was added
-				time: moment().format(),
+				// Add the model to the collection
+				Alloy.Collections.picture.create({
 
-				// Set the filename (the full path changes between builds)
-				filename: filename
-			});
+					// Set the time the picture was added
+					time: moment().format(),
 
-			// }, 500);
+					// Set the filename (the full path changes between builds)
+					filename: filename
+				});
+
+			}, 500);
 		},
 		error: function(e) {
 			alert(e.error || 'Unknown Error');

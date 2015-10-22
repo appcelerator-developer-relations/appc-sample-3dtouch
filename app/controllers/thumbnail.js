@@ -10,7 +10,11 @@ var log = require('log');
 		var previewContext = Ti.UI.iOS.createPreviewContext({
 			preview: createPreview(),
 			actions: createActions(),
+
+			// If you leave this undefined it will use all available height
+			// It will also no longer apply a border radius to the view
 			contentHeight: 400,
+
 			pop: openDetails
 		});
 
