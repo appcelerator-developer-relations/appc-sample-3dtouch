@@ -13,7 +13,7 @@
 	FIXME: https://jira.appcelerator.org/browse/ALOY-1317
 	Default top-level ID doesn't take if-attribute into account
 	-->
-	<Window id="index" if="!Alloy.Globals.isSupported">
+	<Window if="!Alloy.Globals.isSupported">
 		<Label>This sample requires Titanium 5.1.</Label>
 	</Window>
 

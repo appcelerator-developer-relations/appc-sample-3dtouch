@@ -1,5 +1,5 @@
 'View': {
-	height: Ti.UI.SIZE
+	height: Ti.UI.SIZE,
 
 	layout: 'vertical',
 	backgroundColor: '#fff'

@@ -2,10 +2,10 @@
 
 	// Populate the horizontal layout from the top left
 	top: 0,
-	left: 0
+	left: 0,
 
 	// Set to 1/4th of our screen width in alloy.js
 	// Using 25% will somehow wrap the 4th view
 	width: Alloy.Globals.thumbnailSize,
-	height: Alloy.Globals.thumbnailSize,
+	height: Alloy.Globals.thumbnailSize
 }
