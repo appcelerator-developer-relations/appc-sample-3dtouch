@@ -2,6 +2,10 @@ var moment = require('alloy/moment');
 
 var log = require('log');
 
+// Prevent edge case where app is moved to background while photo gallery is
+// showing and then user opens app via the add-shortcut, which will cause error.
+var isPhotoGalleryOpen = false;
+
 /**
  * I wrap code that executes on creation in a self-executing function just to
  * keep it organised, not to protect global scope like it would in alloy.js
@@ -73,9 +77,16 @@ function onCollectionChange() {
  */
 function addPicture() {
 
+	if (isPhotoGalleryOpen) {
+		return;
+	}
+
+	isPhotoGalleryOpen = true;
+
 	Ti.Media.openPhotoGallery({
 		mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO],
 		success: function(e) {
+			isPhotoGalleryOpen = false;
 
 			// FIXME: https://jira.appcelerator.org/browse/TIMOB-19764
 			// We need to wait for the photo gallery to close or our preview actions won't work
@@ -102,7 +113,12 @@ function addPicture() {
 
 			}, 500);
 		},
+		cancel: function(e) {
+			isPhotoGalleryOpen = false;
+		},
 		error: function(e) {
+			isPhotoGalleryOpen = false;
+
 			alert(e.error || 'Unknown Error');
 		}
 	});

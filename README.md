@@ -75,7 +75,7 @@ When a picture gets deleted from the app we use the different APIs also demonstr
 ### Handling Quick Actions
 When the user taps a Quick Action, the [Ti.App.iOS:shortcutitemclick](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.App.iOS-event-shortcutitemclick) event is fired. The payload includes all properties you have set static or dynamic shortcut except the icon. Simply use `itemtype` to identify the shortcut and act accordingly.
 
-In our sample app we're listening to the event in the [list controller](app/controllers/list.js#L30). For the dynamic details-shortcut you can see we're using the custom `userInfo` payload to get the actual model ID of the last-viewed picture.
+In our sample app we're listening to the event in the [list controller](app/controllers/list.js#L33). For the dynamic details-shortcut you can see we're using the custom `userInfo` payload to get the actual model ID of the last-viewed picture.
 
 ## Peek and Pop
 Press firmly on one of the thumbnails in the sample app to play with Peek and Pop. As you start applying more force the rest of the screen will blur, then a preview will appear and finally the details window will open. Swipe up while you Peek to reveil any quick actions available. As you use it more often you will get a feel for the ammount of pressure needed to trigger Peek directly.
@@ -86,7 +86,7 @@ In the [thumbnail controller](app/controllers/thumbnail.js) we check for the ava
 
 * The preview showed during Peek is simply a Titanium view you assign to the [preview](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-preview) property, in our case [preview.xml](app/controllers/preview.xml).
 
-* For pop you assign a callback to the [pop](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-pop) property. The callback will receive a [payload](https://docs.appcelerator.com/platform/latest/#!/api/PreviewPopResponse) that includes a reference to the preview view to allow you to re-use that for pop if you like. In our sample we just open the [details view](app/views/details.xml) via the helper method exposed in the [list controller](app/controllers/list.js#L24).
+* For pop you assign a callback to the [pop](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-pop) property. The callback will receive a [payload](https://docs.appcelerator.com/platform/latest/#!/api/PreviewPopResponse) that includes a reference to the preview view to allow you to re-use that for pop if you like. In our sample we just open the [details view](app/views/details.xml) via the helper method exposed in the [list controller](app/controllers/list.js#L26).
 
 	> **NOTE:** If you assign a preview context to a ListView or TableView the payload will also include the `sectionIndex` and `itemIndex` of the item touched. However, the peek preview [cannot be item-specific](https://jira.appcelerator.org/browse/TIMOB-19763).
 
