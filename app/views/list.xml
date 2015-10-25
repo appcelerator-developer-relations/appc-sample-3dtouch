@@ -13,7 +13,7 @@
 			</ScrollView>
 
 			<!-- Hidden by the controller when the collection is not empty -->
-			<Label id="placeholder" text="Use + to take your first picture!" />
+			<Label id="placeholder" text="Use + to add your first picture!" />
 
 		</Window>
 	</Tab>
