@@ -13,7 +13,7 @@ Force Touch was introduced with the [Apple Watch](https://developer.apple.com/wa
 
 * The developer experience for 3D Touch on iPhone 6S and 6S Plus is [similar](https://developer.apple.com/ios/3d-touch/) to Force Touch on OS X, but the technique driving it is again different. The screen is now [one big pressure sensor](http://www.apple.com/iphone-6s/3d-touch/) which can measure the exact pressure anywhere.
 
-Why Apple uses two different names for three different techniques is a mistery. We can probably expect the 3D Touch technique to come to Apple Watch 2 and new Trackpacks at which point *Force Touch* would no longer be used.
+Why Apple uses two different names for three different techniques is a mystery. We can probably expect the 3D Touch technique to come to Apple Watch 2 and new Trackpads at which point *Force Touch* would no longer be used.
 
 ## Running the Sample
 At this moment the iOS Simulator does not let you to simulate 3D Touch events. So to run and test the sample you will need an iPhone 6S to build to.
@@ -46,7 +46,7 @@ At this moment the iOS Simulator does not let you to simulate 3D Touch events. S
 
 ## Quick Actions
 
-Press firmly on the app icon to reveil the static *Quick Actions* or *Application Shortcuts*. Once you've used the app add and then view a picture you will also see the dynamic shortcut:
+Press firmly on the app icon to reveal the static *Quick Actions* or *Application Shortcuts*. Once you've used the app add and then view a picture you will also see the dynamic shortcut:
 
 ![shortcuts](docs/shortcuts.png)
 
