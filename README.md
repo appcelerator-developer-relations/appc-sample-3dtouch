@@ -5,18 +5,18 @@ This sample app demonstrates the new [3D Touch](http://www.apple.com/iphone-6s/3
 ![screenshots](docs/screencast.gif)
 
 ## Force Touch vs 3D Touch
-Force Touch was introduced with the [Apple Watch](https://developer.apple.com/watch/human-interface-guidelines/#force-touch) and has later been added to the MacBook and Magic Trackpad for [OS X](https://developer.apple.com/osx/force-touch/). Still, it is two different techniques and 3D Touch is another.
+Force Touch was introduced with the [Apple Watch](https://developer.apple.com/watch/human-interface-guidelines/#force-touch) and has later been added to the MacBook and Magic Trackpad for [OS X](https://developer.apple.com/osx/force-touch/). Still, these devices use two different techniques and 3D Touch is yet another.
 
-* Apple provides little detail about how Force Touch for Apple Watch exactly works but as a developer it is important that [you do not have direct access to the touch events](https://forums.developer.apple.com/message/5723#5723) and have to implement [Context Menus](https://developer.apple.com/library/ios/documentation/General/Conceptual/WatchKitProgrammingGuide/Menus.html) to which a touch is either *firm* or not. It was even rumored that the Apple Watch measures how the surface of your finger grows as you press with more force.
+* Apple provides little detail about how Force Touch for Apple Watch exactly works, but as a developer it is important that [you do not have direct access to the touch events](https://forums.developer.apple.com/message/5723#5723) and have to implement [Context Menus](https://developer.apple.com/library/ios/documentation/General/Conceptual/WatchKitProgrammingGuide/Menus.html) to which a touch is either *firm* or not. It was even rumored that the Apple Watch measures how the surface of your finger grows as you press with more force.
 
-* The Trackpads however [have four force sensors](http://www.apple.com/macbook/design/) and allow developers to [monitor the exact presure and acceleration](https://developer.apple.com/osx/force-touch/) in OS X.
+* The Trackpads however [have four force sensors](http://www.apple.com/macbook/design/) and allow developers to [monitor the exact pressure and acceleration](https://developer.apple.com/osx/force-touch/) in OS X.
 
 * The developer experience for 3D Touch on iPhone 6S and 6S Plus is [similar](https://developer.apple.com/ios/3d-touch/) to Force Touch on OS X, but the technique driving it is again different. The screen is now [one big pressure sensor](http://www.apple.com/iphone-6s/3d-touch/) which can measure the exact pressure anywhere.
 
 Why Apple uses two different names for three different techniques is a mystery. We can probably expect the 3D Touch technique to come to Apple Watch 2 and new Trackpads at which point *Force Touch* would no longer be used.
 
 ## Running the Sample
-At this moment the iOS Simulator does not let you to simulate 3D Touch events. So to run and test the sample you will need an iPhone 6S to build to.
+At this moment, the iOS Simulator does not let you to simulate 3D Touch events. So to run and test the sample you will need an iPhone 6S to build to.
 
 > **NOTE:** There is a [tweak available](https://github.com/DeskConnect/SBShortcutMenuSimulator) to simulate the Quick Actions in iOS Simulator.
 
@@ -46,7 +46,7 @@ At this moment the iOS Simulator does not let you to simulate 3D Touch events. S
 
 ## Quick Actions
 
-Press firmly on the app icon to reveal the static *Quick Actions* or *Application Shortcuts*. Once you've used the app add and then view a picture you will also see the dynamic shortcut:
+Press firmly on the app icon to reveal the static *Quick Actions* or *Application Shortcuts*. Once you've used the app add and then view a picture, you will also see the dynamic shortcut:
 
 ![shortcuts](docs/shortcuts.png)
 
@@ -68,7 +68,7 @@ Dynamic shortcuts are created via an instance of [Ti.UI.iOS.ApplicationShortcuts
 
 In our sample we create a dynamic shortcut for the last-viewed picture in the [details controller](app/controllers/details.js#L11). We first create an instance of the above API and then use [addDynamicShortcut](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.ApplicationShortcuts-method-addDynamicShortcut). The params are similar to the static shortcuts, with the exception of [icon](https://docs.appcelerator.com/platform/latest/#!/api/ShortcutParams-property-icon) which can be either the path to a Template Icon or one of the `Ti.UI.iOS.SHORTCUT_ICON_TYPE_*` constants.
 
-> **NOTE:** As you can see we first use [Ti.UI.iOS.forceTouchSupported](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-property-forceTouchSupported) to test if the OS version and device actually support 3D Touch. The app might crash if you don't!
+> **NOTE:** As you can see, we first use [Ti.UI.iOS.forceTouchSupported](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-property-forceTouchSupported) to test if the OS version and device actually support 3D Touch. The app might crash if you don't!
 
 When a picture gets deleted from the app we use the different APIs also demonstrated in the [api controller](app/controllers/api.js) to also remove the shortcut if it happened to be the last one we've viewed. You'll find this code in the [thumbnail](app/controllers/thumbnail.js#L65) and [details](app/controllers/details.js#L61) controllers.
 
@@ -78,7 +78,7 @@ When the user taps a Quick Action, the [Ti.App.iOS:shortcutitemclick](https://do
 In our sample app we're listening to the event in the [list controller](app/controllers/list.js#L33). For the dynamic details-shortcut you can see we're using the custom `userInfo` payload to get the actual model ID of the last-viewed picture.
 
 ## Peek and Pop
-Press firmly on one of the thumbnails in the sample app to play with Peek and Pop. As you start applying more force the rest of the screen will blur, then a preview will appear and finally the details window will open. Swipe up while you Peek to reveil any quick actions available. As you use it more often you will get a feel for the ammount of pressure needed to trigger Peek directly.
+Press firmly on one of the thumbnails in the sample app to play with Peek and Pop. As you start applying more force the rest of the screen will blur, then a preview will appear and finally the details window will open. Swipe up while you Peek to reveal any quick actions available. As you use it more often you will get a feel for the amount of pressure needed to trigger Peek directly.
 
 ![preview](docs/preview.png)
 
