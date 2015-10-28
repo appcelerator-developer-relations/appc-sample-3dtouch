@@ -52,13 +52,15 @@ Press firmly on the app icon to reveal the static *Quick Actions* or *Applicatio
 
 ### Static shortcuts
 
-Static shortcuts must be specified in `Info.plist` and work right after the app has installed. In Titanium you will add them to [tiapp.xml](tiapp.xml#L20) under the `ios/plist/dict` element, but apart from that you can just follow the [Apple Reference](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36).
+Static shortcuts must be specified in `Info.plist` and work right after the app has installed. In Titanium you will add them to [tiapp.xml](tiapp.xml#L21) under the `ios/plist/dict` element, but apart from that you can just follow the [Apple Reference](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36).
 
-In the sample app we've [added a Quick Action](tiapp.xml#L20) to select a picture from the device photo gallery to add to the app.
+In the sample app we've [added a Quick Action](tiapp.xml#L21) to select a picture from the device photo gallery to add to the app.
 
-Instead of `UIApplicationShortcutItemIconType` you can also use `UIApplicationShortcutItemIconFile` to use a 35x35dp so-called [Template Image](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/BarIcons.html#//apple_ref/doc/uid/TP40006556-CH21-SW1). The title and subtitle can be localized by using a name you provide strings for via `i18n/<language>/app.xml` - not `strings.xml`.
+Instead of `UIApplicationShortcutItemIconType` you can also use `UIApplicationShortcutItemIconFile` to use a 35x35dp so-called [Template Icon](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/BarIcons.html#//apple_ref/doc/uid/TP40006556-CH21-SW1). The title and subtitle can be localized by using a name you provide strings for via `i18n/<language>/app.xml` - not `strings.xml`.
 
-> **NOTE:** It is a [known issue](https://jira.appcelerator.org/browse/CLI-845) that for static icons you need to use the corresponding hash of the image found under `build/iphone/Assets.xcassets`.
+> **NOTE:** To use custom template icons the image must be in an asset catalog. This is an optional feature in 5.1.0 that can be enabled by `<use-app-thinning>true</use-app-thinning>` under the `ios` element in [tiapp.xml](tiapp.xml#L18).
+
+> **NOTE:** It is a [known issue](https://jira.appcelerator.org/browse/CLI-845) that to use a custom template icon for static shortcuts you need to find the corresponding hash of the image found under `build/iphone/Assets.xcassets`.
 
 We'll come back to how we handle the action later.
 
