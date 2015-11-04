@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<string name="add_photo_title">Bild auswählen</string>
-	<string name="add_photo_subtitle">Wählen Sie ein neues Bild</string>
+	<string name="add_title">Bild auswählen</string>
+	<string name="add_subtitle">Wählen Sie ein neues Bild</string>
 </resources>

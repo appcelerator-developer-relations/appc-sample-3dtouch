@@ -42,14 +42,14 @@
                         Can be a name in an i18n/<lang>/app.xml file
                         -->
                         <key>UIApplicationShortcutItemTitle</key>
-                        <string>add_photo_title</string>
+                        <string>add_title</string>
 
                         <!--
                         Subtitle
                         Can be a name in an i18n/<lang>/app.xml file
                         -->
                         <key>UIApplicationShortcutItemSubtitle</key>
-                        <string>add_photo_subtitle</string>
+                        <string>add_subtitle</string>
                         
                         <!-- Type used to identify the action in the event listener -->
                         <key>UIApplicationShortcutItemType</key>
