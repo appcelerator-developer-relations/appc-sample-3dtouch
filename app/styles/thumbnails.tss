@@ -1,0 +1,8 @@
+'ScrollView': {
+	layout: 'horizontal',
+
+	// Trigger vertical scroll on iOS by setting contentWidth to that of its
+	// parent while allowing contentHeight to size to its contents.
+	contentWidth: Ti.UI.FILL,
+	contentHeight: Ti.UI.SIZE
+}

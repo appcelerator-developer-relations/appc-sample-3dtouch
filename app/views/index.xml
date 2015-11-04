@@ -2,7 +2,7 @@
 	
 	<!-- For supported environments (see alloy.js) -->
 	<TabGroup if="Alloy.Globals.isSupported">
-		<Require src="list" />
+		<Require src="pictures" />
 		<Require src="apis" />
 		<Require src="console" />
 	</TabGroup>

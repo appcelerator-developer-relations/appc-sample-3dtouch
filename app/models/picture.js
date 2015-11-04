@@ -17,16 +17,17 @@ exports.definition = {
 
     // Extend the default BackBone model
     extendModel: function(Model) {
-        
+
         _.extend(Model.prototype, {
 
-            // In data-binding, properties returned by this method preceed model attributes
+            // Will be used in data-binding instead of attributes
             transform: function transform() {
-                return {
+                var transformed = this.toJSON();
 
-                    // We can't store the full path because each build to iOS Simulator results in a new path
-                    filepath: Ti.Filesystem.applicationDataDirectory + this.get('filename')
-                };
+                // We can't store the full path because each build to iOS Simulator results in a new path
+                transformed.filepath = Ti.Filesystem.applicationDataDirectory + this.get('filename');
+
+                return transformed;
             }
         });
 

@@ -44,3 +44,7 @@ overrode the settings with other TSS, XML, or JS settings:
 		color: '#FFF'
 	}
 }
+
+'#placeholder': {
+	color: '#aaa'
+}

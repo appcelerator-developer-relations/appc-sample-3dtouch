@@ -1,10 +1,10 @@
-<!-- Required in list.xml to render a thumbnail for each model -->
+<!-- Required in thumbnails.xml to render a thumbnail for each model -->
 <Alloy>
 
 	<!--
 	Because we are required within a data-bound view we can use data-binding
 	here as wel. Filepath is a transformation handled in models/picture.js
 	-->
-	<ImageView id="imageView" image="{filepath}" onClick="openDetails" />
+	<ImageView id="imageView" image="{filepath}" onClick="onThumbnailClick" />
 
 </Alloy>

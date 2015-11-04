@@ -1,0 +1,11 @@
+<Alloy>
+
+	<!-- Create a global instance of the picture collection -->
+	<Collection src="picture" />
+
+	<!-- For each picture model add a thumbnail view to the ScrollView -->
+	<ScrollView dataCollection="picture" dataFunction="bindData">
+		<Require src="thumbnail" />
+	</ScrollView>
+
+</Alloy>

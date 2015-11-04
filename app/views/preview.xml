@@ -1,14 +1,6 @@
 <Alloy>
 	<View>
-
-		<!--
-		Because our controller is passed a model via the $model argument
-		we can use data-binding here.
-		-->
-		<Label text="{time}" />
-
-		<!-- Filepath is a transformation handled in models/picture.js -->
-		<ImageView image="{filepath}" />
-
+		<Label id="time" />
+		<ImageView id="picture" />
 	</View>
 </Alloy>

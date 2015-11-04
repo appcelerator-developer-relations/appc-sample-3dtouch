@@ -3,19 +3,20 @@
 	<!-- Create a global instance of the picture collection -->
 	<Collection src="picture" />
 
-	<Tab id="tab" title="Pictures">
-		<Window title="Pictures">
-			<RightNavButton systemButton="ADD" onClick="addPicture" />
+	<ListView id="listView" defaultItemTemplate="picture" onItemclick="onItemclick">
 
-			<!-- For each picture model add a thumbnail view to the ScrollView -->
-			<ScrollView id="scrollView" dataCollection="picture">
-				<Require src="thumbnail" />
-			</ScrollView>
+			<Templates>
+				<ItemTemplate name="picture">
+					<ImageView bindId="picture" />
+					<Label bindId="time" />
+				</ItemTemplate>
+			</Templates>
+				
+		<!-- For each picture model add a ListItem to the ListSection -->
+		<ListSection dataCollection="picture" dataFunction="bindData">
+			<ListItem itemId="{filename}" picture:image="{filepath}" time:text="{time}" />
+		</ListSection>
 
-			<!-- Hidden by the controller when the collection is not empty -->
-			<Label id="placeholder" text="Use + to add your first picture!" />
-
-		</Window>
-	</Tab>
+	</ListView>
 
 </Alloy>
