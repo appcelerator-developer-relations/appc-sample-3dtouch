@@ -16,6 +16,11 @@ var container;
 
 	toggleContainer();
 
+	// If supported, listen to the event that fires when a app shortcut has been tapped on
+	if (Ti.UI.iOS.forceTouchSupported) {
+		Ti.App.iOS.addEventListener('shortcutitemclick', onShortcutitemclick);
+	}
+
 	// Listen to collection changes
 	Alloy.Collections.picture.on('fetch destroy change add remove reset', onCollectionChange);
 
@@ -28,6 +33,31 @@ var container;
 	Alloy.Globals.closeDetails = closeDetails;
 
 })(arguments[0] || {});
+
+/**
+ * Event listener for taps on app shortcut items
+ */
+function onShortcutitemclick(e) {
+
+	log.args('Ti.App.iOS:shortcutitemclick', e);
+
+	// The static shortcut we've set in tiapp.xml
+	if (e.itemtype === 'add') {
+		addPicture();
+
+		// The dynamic shortcut we set in details.js
+	} else if (e.itemtype === 'details') {
+
+		// Get the modelId from the shortcut item payload
+		var modelId = e.userInfo.filename;
+
+		// Create the detail window and open it via our helper
+		Alloy.Globals.openDetails(modelId);
+	}
+
+	// Activate our
+	$.tab.active = true;
+}
 
 /**
  * Event listener for changes to the collection
