@@ -1,10 +1,4 @@
-var moment = require('alloy/moment');
-
 var log = require('log');
-
-// Prevent edge case where app is moved to background while photo gallery is
-// showing and then user opens app via the add-shortcut, which will cause error.
-var isPhotoGalleryOpen = false;
 
 /**
  * I wrap code that executes on creation in a self-executing function just to
@@ -12,142 +6,42 @@ var isPhotoGalleryOpen = false;
  */
 (function constructor(args) {
 
-	// If supported, listen to the event that fires when a app shortcut has been tapped on
+	// We've allready called fetch() in pictures.js and instead of doing
+	// this again we simply call the data-binding method we've given a name
+	// in the view manually.
+	bindData();
+
+	// For ListView and TableView the previewContext is added to the list
+	// instead of every single item/row.
 	if (Ti.UI.iOS.forceTouchSupported) {
-		Ti.App.iOS.addEventListener('shortcutitemclick', onShortcutitemclick);
+
+		// Get the previewContext and its controller
+		var previewCtrl = Alloy.createController('preview');
+		var previewContext = previewCtrl.getView();
+
+		// Since all items share the same preview we need to listen to the peek event
+		previewContext.addEventListener('peek', function(e) {
+
+			// Which contains the item's sectionIndex, itemIndex and optional itemId
+			// that we can use to look up the data
+			var model = Alloy.Collections.picture.get(e.itemId);
+
+			// And update the preview accordingly (see previewContext.js)
+			previewCtrl.setModel(model);
+		});
+
+		$.listView.previewContext = previewContext;
 	}
-
-	// Listen to collection changes
-	Alloy.Collections.picture.on('fetch destroy change add remove reset', onCollectionChange);
-
-	// Fetch collection models via its adapter (see models/picture.js)
-	Alloy.Collections.picture.fetch();
-
-	// Expose global helper methods to close a previous detailsWindow before we open a new one
-	// Tabs don't have a pop-to-root method we can use for this
-	Alloy.Globals.openDetails = openDetails;
-	Alloy.Globals.closeDetails = closeDetails;
 
 })(arguments[0] || {});
 
 /**
- * Event listener for taps on app shortcut items
+ * Event listener set in the view for when user taps on an item
  */
-function onShortcutitemclick(e) {
+function onItemclick(e) {
+	log.args('Ti.UI.ListView:itemclick', e);
 
-	log.args('Ti.App.iOS:shortcutitemclick', e);
-
-	// The static shortcut we've set in tiapp.xml
-	if (e.itemtype === 'add') {
-		addPicture();
-
-		// The dynamic shortcut we set in details.js
-	} else if (e.itemtype === 'details') {
-
-		// Get the modelId from the shortcut item payload
-		var modelId = e.userInfo.filename;
-
-		// Get the model
-		var model = Alloy.Collections.picture.get(modelId);
-
-		// The model no longer exist
-		if (!model) {
-			return alert('Picture not found: ' + e.userInfo.filename);
-		}
-
-		// Create the detail window and open it via our helper
-		Alloy.Globals.openDetails(model);
-	}
-
-	// Activate our
-	$.tab.active = true;
-}
-
-/**
- * Event listener for changes to the collection
- */
-function onCollectionChange() {
-
-	// Show the placeholder when the collection is empty (!0 === true)
-	$.placeholder.visible = !Alloy.Collections.picture.length;
-}
-
-/**
- * Event listener set in list.xml for the '+' button
- */
-function addPicture() {
-
-	if (isPhotoGalleryOpen) {
-		return;
-	}
-
-	isPhotoGalleryOpen = true;
-
-	Ti.Media.openPhotoGallery({
-		mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO],
-		success: function(e) {
-			isPhotoGalleryOpen = false;
-
-			// FIXME: https://jira.appcelerator.org/browse/TIMOB-19764
-			// We need to wait for the photo gallery to close or our preview actions won't work
-			setTimeout(function() {
-
-				// Create a unique filename
-				var filename = Ti.Platform.createUUID() + '.jpg';
-
-				// Create the file under the applicationDataDirectory
-				var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
-
-				// Write a square version of the selected media to the file
-				file.write(e.media.imageAsThumbnail(e.media.width));
-
-				// Add the model to the collection
-				Alloy.Collections.picture.create({
-
-					// Set the time the picture was added
-					time: moment().format(),
-
-					// Set the filename (the full path changes between builds)
-					filename: filename
-				});
-
-			}, 500);
-		},
-		cancel: function(e) {
-			isPhotoGalleryOpen = false;
-		},
-		error: function(e) {
-			isPhotoGalleryOpen = false;
-
-			alert(e.error || 'Unknown Error');
-		}
-	});
-}
-
-/**
- * Global helper to open a detailsWindow but first close the previous.
- * Tabs don't have a pop-to-root method we can use for this.
- */
-function openDetails(model) {
-
-	// Close the current detailsWindow, if any
-	Alloy.Globals.closeDetails();
-
-	// Create a new details controller and reference its view
-	Alloy.Globals.detailsWindow = Alloy.createController('details', {
-		$model: model
-	}).getView();
-
-	// Open it under the tab
-	$.tab.openWindow(Alloy.Globals.detailsWindow);
-}
-
-/**
- * Global helper to close the detailsWindow, if any
- */
-function closeDetails() {
-
-	if (Alloy.Globals.detailsWindow) {
-		$.tab.closeWindow(Alloy.Globals.detailsWindow);
-	}
+	// The item's special itemId property is the model ID we need
+	// See pictures.js for the implementation of openDetails()
+	Alloy.Globals.openDetails(e.itemId);
 }

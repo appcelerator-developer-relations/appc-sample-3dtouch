@@ -3,7 +3,9 @@
 		<Window title="Console">
 			<RightNavButton systemButton="TRASH" onClick="clearLogs" />
 
-			<TextArea id="log" />
+			<ScrollView id="scrollView">
+				<Label id="log" />
+			</ScrollView>
 
 		</Window>
 	</Tab>

@@ -1,0 +1,21 @@
+<Alloy>
+
+	<!-- Create a global instance of the picture collection -->
+	<Collection src="picture" />
+
+	<Tab id="tab" title="Pictures">
+		<Window title="Pictures">
+
+			<LeftNavButton systemButton="ORGANIZE" onClick="toggleContainer" />
+			<RightNavButton systemButton="ADD" onClick="addPicture" />
+
+			<!-- This will contain the thumbnails or ListView -->
+			<View id="container" />
+
+			<!-- Hidden by the controller when the collection is not empty -->
+			<Label id="placeholder" text="Use + to add your first picture!" />
+
+		</Window>
+	</Tab>
+
+</Alloy>

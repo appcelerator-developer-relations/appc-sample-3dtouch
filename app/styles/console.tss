@@ -1,10 +1,15 @@
-'TextArea': {
-	width: Ti.UI.FILL,
-	height: Ti.UI.FILL,
+'ScrollView': {
+	contentWidth: Ti.UI.FILL,
+	contentHeight: Ti.UI.SIZE
+}
 
-	// We just want to display text in a way that it can scroll
-	// We don't want the user to actually be able to edit text
-	editable: false,
+'Label': {
+	top: 10,
+	right: 10,
+	left: 10,
+
+	width: Ti.UI.FILL,
+	height: Ti.UI.SIZE,
 
 	font: {
 		fontFamily: 'Courier New'

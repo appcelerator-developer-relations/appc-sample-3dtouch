@@ -1,9 +1,4 @@
 <Alloy>
-
-	<!--
-	Because our controller is passed a model via the $model argument
-	we can use data-binding here.
-	-->
 	<Window title="{time}" onClose="onWindowClose">
 		<RightNavButton systemButton="TRASH" onClick="deletePicture" />
 
