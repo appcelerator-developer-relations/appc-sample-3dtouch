@@ -9,6 +9,7 @@
 			<LeftNavButton systemButton="ORGANIZE" onClick="toggleContainer" />
 			<RightNavButton systemButton="ADD" onClick="addPicture" />
 
+			<!-- This will contain the thumbnails or ListView -->
 			<View id="container" />
 
 			<!-- Hidden by the controller when the collection is not empty -->

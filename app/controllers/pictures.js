@@ -128,13 +128,13 @@ function addPicture() {
 }
 
 /**
- * Global helper to open a detailsWindow but first close the previous.
+ * Global helper to open a detailsWindow but first close current.
  * Tabs don't have a pop-to-root method we can use for this.
  */
 function openDetails(modelId) {
 
-	// Get the model
-	var model = Alloy.Collections.picture.get(modelId);
+	// Get the model if the argument is not already
+	var model = _.isObject(modelId) ? modelId : Alloy.Collections.picture.get(modelId);
 
 	// The model no longer exist
 	if (!model) {
@@ -154,7 +154,7 @@ function openDetails(modelId) {
 }
 
 /**
- * Global helper to close the detailsWindow, if any
+ * Global helper to close the current detailsWindow.
  */
 function closeDetails() {
 

@@ -4,6 +4,9 @@
  */
 (function constructor(args) {
 
+	// We've allready called fetch() in pictures.js and instead of doing
+	// this again we simply call the data-binding method we've given a name
+	// in the view manually.
 	bindData();
 
 })(arguments[0] || {});

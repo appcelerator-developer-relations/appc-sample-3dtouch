@@ -14,7 +14,10 @@
 				
 		<!-- For each picture model add a ListItem to the ListSection -->
 		<ListSection dataCollection="picture" dataFunction="bindData">
+
+			<!-- Filepath is a transformation handled in models/picture.js -->
 			<ListItem itemId="{filename}" picture:image="{filepath}" time:text="{time}" />
+			
 		</ListSection>
 
 	</ListView>

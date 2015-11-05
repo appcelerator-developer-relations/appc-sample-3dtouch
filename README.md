@@ -54,7 +54,7 @@ Press firmly on the app icon to reveal the static *Quick Actions* or *Applicatio
 
 Static shortcuts must be specified in `Info.plist` and work right after the app has installed. In Titanium you will add them to [tiapp.xml](tiapp.xml#L21) under the `ios/plist/dict` element, but apart from that you can just follow the [Apple Reference](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW36).
 
-In the sample app we've [added a Quick Action](tiapp.xml#L21) to select a picture from the device photo gallery to add to the app.
+In the sample app we've [added a Quick Action](tiapp.xml#L24) to select a picture from the device photo gallery to add to the app.
 
 Instead of `UIApplicationShortcutItemIconType` you can also use `UIApplicationShortcutItemIconFile` to use a 35x35dp so-called [Template Icon](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/BarIcons.html#//apple_ref/doc/uid/TP40006556-CH21-SW1). The title and subtitle can be localized by using a name you provide strings for via `i18n/<language>/app.xml` - not `strings.xml`.
 
@@ -77,22 +77,25 @@ When a picture gets deleted from the app we use the different APIs also demonstr
 ### Handling Quick Actions
 When the user taps a Quick Action, the [Ti.App.iOS:shortcutitemclick](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.App.iOS-event-shortcutitemclick) event is fired. The payload includes all properties you have set static or dynamic shortcut except the icon. Simply use `itemtype` to identify the shortcut and act accordingly.
 
-In our sample app we're listening to the event in the [list controller](app/controllers/list.js#L33). For the dynamic details-shortcut you can see we're using the custom `userInfo` payload to get the actual model ID of the last-viewed picture.
+In our sample app we're listening to the event in the [pictures controller](app/controllers/pictures.js#L19). For the dynamic details-shortcut you can see we're using the custom `userInfo` payload to get the actual model ID of the last-viewed picture.
 
-## Peek and Pop
+## Peek & Pop
 Press firmly on one of the thumbnails in the sample app to play with Peek and Pop. As you start applying more force the rest of the screen will blur, then a preview will appear and finally the details window will open. Swipe up while you Peek to reveal any quick actions available. As you use it more often you will get a feel for the amount of pressure needed to trigger Peek directly.
 
 ![preview](docs/preview.png)
 
-In the [thumbnail controller](app/controllers/thumbnail.js) we check for the availability of forceTouch again and then use [Ti.UI.iOS.createPreviewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-method-createPreviewContext) to add Peek and Pop.
+### PreviewContext
+To add Peek & Pop to a individual view or a List/Table View, create an instance of [Ti.UI.iOS.createPreviewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-method-createPreviewContext) and set it to the view's [previewContext](https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.View-property-previewContext) property. When used in a List/Table View you need to update the preview by listening to the [peek](https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-peek) event.
 
-* The preview showed during Peek is simply a Titanium view you assign to the [preview](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-preview) property, in our case [preview.xml](app/controllers/preview.xml).
+We create the previewContext in the [preview view](app/views/preview.xml). Awaiting [Alloy support](https://jira.appcelerator.org/browse/ALOY-1325) we manually set the actual view for the *peek* as well as the actions in the [preview controller](app/controllers/preview.js#L14).
 
-* For pop you assign a callback to the [pop](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-pop) property. The callback will receive a [payload](https://docs.appcelerator.com/platform/latest/#!/api/PreviewPopResponse) that includes a reference to the preview view to allow you to re-use that for pop if you like. In our sample we just open the [details view](app/views/details.xml) via the helper method exposed in the [list controller](app/controllers/list.js#L26).
+* The preview showed during Peek is simply a Titanium View you assign to the [preview](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-preview) property. Use the previewContext's [contentHeight](https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-contentHeight) property to enable rounded corners and not have the view take up all available height.
 
-	> **NOTE:** If you assign a preview context to a ListView or TableView the payload will also include the `sectionIndex` and `itemIndex` of the item touched. However, the peek preview [cannot be item-specific](https://jira.appcelerator.org/browse/TIMOB-19763).
+* Listen to the [peek](https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-peek) event to update the preview when it will be displayed. The event payload has the `sectionIndex`, `itemIndex` and optional `itemId` you need to do so.
 
-* Finally an array of Quick Actions can be assigned to the [actions](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-actions) property. These can also be [grouped](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewActionGroup) and our samples demonstrates both.
+* To pop you add an event listener to the [pop](https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-pop) event. It has the same payload as `peek`. In our sample we just open the [details view](app/views/details.xml) via the helper method exposed in the [list controller](app/controllers/list.js#L26).
+
+* Finally an array of Quick Actions can be assigned to the [actions](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-actions) property. These can also be [grouped](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewActionGroup) and the samples demonstrates both, as well as the different styles available.
 
 ## Credits
 
@@ -103,4 +106,4 @@ A special thanks to community member Ben Bahrenburg for [his initial implementat
 * Titanium API reference: [Ti.UI.iOS.ApplicationShortcuts](https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.iOS.ApplicationShortcuts)
 * Titanium API reference: [Ti.UI.iOS.PreviewContext](https://appcelerator.github.io/appc-docs/latest/#!/api/Titanium.UI.iOS.PreviewContext)
 * Apple Human Interface Guidelines: [3D Touch](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/3DTouch.html)
-* Appel Documentation: [Getting Started with 3D Touch](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html)
+* Apple Documentation: [Getting Started with 3D Touch](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/Adopting3DTouchOniPhone/index.html)

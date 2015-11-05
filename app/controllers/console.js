@@ -15,7 +15,9 @@ var log = require('log');
 })(arguments[0] || {});
 
 function showLogs() {
-	$.log.value = log.history;
+	$.log.text = log.history;
+
+	$.scrollView.scrollToBottom();
 }
 
 function clearLogs() {
