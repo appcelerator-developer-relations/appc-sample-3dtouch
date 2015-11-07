@@ -88,11 +88,13 @@ Press firmly on one of the thumbnails in the sample app to play with Peek and Po
 To add Peek & Pop to a individual view or a List/Table View, create an instance of [Ti.UI.iOS.createPreviewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-method-createPreviewContext) and set it to the view's [previewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.View-property-previewContext) property. When used in a List/Table View you need to update the preview for the *peeked* item by listening to the [peek](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-peek) event.
 
 ### Sample
-We create the previewContext in the [preview view](app/views/preview.xml). Awaiting [Alloy support](https://jira.appcelerator.org/browse/ALOY-1325) we manually set the actual view for the *peek* as well as the actions in the [preview controller](app/controllers/preview.js#L14).
+Use the top-left icon on the *Pictures* tab to switch between thumbnails that each individually have a preview context and a ListView where all items share a preview context.
+
+For both views we create the previewContext in the [preview view](app/views/preview.xml). Awaiting [Alloy support](https://jira.appcelerator.org/browse/ALOY-1325) we manually set the actual view for the *peek* as well as the actions in the [preview controller](app/controllers/preview.js#L14).
 
 * The preview showed during Peek is simply a Titanium View you assign to the [preview](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-preview) property. Use the previewContext's [contentHeight](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-property-contentHeight) property to enable rounded corners and not have the view take up all available height.
 
-* Listen to the [peek](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-peek) event to update the preview when it will be displayed. The event payload has the `sectionIndex`, `itemIndex` and optional `itemId` you need to do so.
+* Listen to the [peek](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-peek) event to update a shared preview when it is about to be displayed for a specific item. The event payload has the `sectionIndex`, `itemIndex` and optional `itemId` you need to do so.
 
 * To pop you add an event listener to the [pop](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-pop) event. It has the same payload as `peek`. In our sample we just open the [details view](app/views/details.xml) via the helper method exposed in the [list controller](app/controllers/list.js#L26).
 
