@@ -95,7 +95,7 @@ For both views we create the previewContext in [preview.xml](app/views/preview.x
 	$.previewContext = Ti.UI.createPreviewContext({
 		contentHeight: 400,
 		preview: $.preview,
-		actions: createActions
+		actions: createActions()
 	});
 	$.previewContext.addEventListener('peek', onPeek);
 	$.previewContext.addEventListener('pop', onPop);
