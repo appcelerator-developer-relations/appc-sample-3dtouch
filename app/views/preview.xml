@@ -4,12 +4,10 @@ Used in the thumbnail and list controllers.
 <Alloy>
 
 	<!--
-	FIXME: https://jira.appcelerator.org/browse/ALOY-1325
-	We need to manually add the NS and in the controller set the preview.
 	If you do not set contentHeight it will use all available height,
 	but also no longer apply a border radius to the view.
 	-->
-	<PreviewContext ns="Ti.UI.iOS" id="previewContext" contentHeight="400" onPeek="onPeek" onPop="onPop">
+	<PreviewContext id="previewContext" contentHeight="400" onPeek="onPeek" onPop="onPop">
 		<Preview>
 			<View id="preview">
 				<Label id="time" />
@@ -24,11 +22,5 @@ Used in the thumbnail and list controllers.
 			</PreviewActionGroup>
 		</Actions>
 	</PreviewContext>
-
-	<!--
-	Only the first top-level element will be returned as the view. We use
-	this to link this preview to the above PreviewContext in the controller.
-	-->
-
 
 </Alloy>

@@ -11,11 +11,6 @@ var model;
  */
 (function constructor(args) {
 
-	// FIXME: https://jira.appcelerator.org/browse/ALOY-1325
-	// These cannot be set via XML yet
-	// $.previewContext.preview = $.preview;
-	// $.previewContext.actions = createActions();
-
 	// A model was passed (see thumbnail.js)
 	if (args.model) {
 		setModel(args.model);

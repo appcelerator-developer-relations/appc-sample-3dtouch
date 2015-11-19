@@ -1,5 +1,7 @@
 # iOS 9 3D Touch Sample App
 
+> **NOTE:** This Sample App requires Titanium [5.1.0.RC](https://community.appcelerator.com/topic/3976/sdk-5-1-0-rc-and-studio-4-4-0-rc-now-available) or later and Alloy 1.7.25 or later, which is included in AppC CLI Core Package 5.1.0-61 or later.
+
 This sample app demonstrates the new [3D Touch](http://www.apple.com/iphone-6s/3d-touch/) capabilities of the iPhone 6S. Titanium 5.1 implements [Peek and Pop](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/3DTouch.html#//apple_ref/doc/uid/TP40006556-CH71-SW1) and [Home Screen Quick Actions](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/3DTouch.html#//apple_ref/doc/uid/TP40006556-CH71-SW1). The new [force-properties](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITouch_Class/index.html#//apple_ref/occ/instp/UITouch/force) available in touch-events will be [added in a later release](https://jira.appcelerator.org/browse/TIMOB-19492) as well as [support for the related Apple Pencil](https://jira.appcelerator.org/browse/TIMOB-19667).
 
 ![screenshots](docs/screencast.gif)
@@ -90,7 +92,7 @@ To add Peek & Pop to a individual view or a List/Table View, create an instance 
 ### Sample
 Use the top-left icon on the *Pictures* tab to switch between thumbnails that each individually have a preview context and a ListView where all items share a preview context.
 
-For both views we create the previewContext in [preview.xml](app/views/preview.xml). Awaiting [Alloy support](https://jira.appcelerator.org/browse/ALOY-1325) I create the PreviewContext in [preview.xml](app/views/preview.xml) using the `ns` attribute. Without it, `<PreviewContext>` would compile to `Ti.UI.createPreviewContext()` instead of `Ti.UI.iOS.createPreviewContext()`. In [preview.js](app/controllers/preview.js#L14) I manually set the `preview` view as well as the actions for the *peek*. In classic this would look like:
+For both views we create the previewContext in [preview.xml](app/views/preview.xml). As from Alloy 1.7.25 and AppC CLI Core Package 5.1.0 you can define these in XML. In classic this would look like:
 
 	$.previewContext = Ti.UI.createPreviewContext({
 		contentHeight: 400,
