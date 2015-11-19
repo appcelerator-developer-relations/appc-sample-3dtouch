@@ -18,6 +18,10 @@
  */
 (function(global) {
 
+	// Used in controllers/pictures.js to save an optimal detail size for this device
+	Alloy.Globals.logicalDensityFactor = Ti.Platform.displayCaps.logicalDensityFactor;
+	Alloy.Globals.detailSize = Ti.Platform.displayCaps.platformWidth * Alloy.Globals.logicalDensityFactor;
+
 	// Used in styles/thumbnail.tss
 	// FIXME: Using 25% will somehow wrap the 4th view
 	Alloy.Globals.thumbnailSize = Ti.Platform.displayCaps.platformWidth / 4;

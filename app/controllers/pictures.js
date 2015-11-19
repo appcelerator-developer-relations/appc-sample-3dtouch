@@ -96,13 +96,13 @@ function addPicture() {
 			setTimeout(function() {
 
 				// Create a unique filename
-				var filename = Ti.Platform.createUUID() + '.jpg';
+				var filename = Ti.Platform.createUUID() + Alloy.Globals.detailSuffix + ((Alloy.Globals.logicalDensityFactor === 1) ? '' : '@' + Alloy.Globals.logicalDensityFactor + 'x') + '.jpg';
 
 				// Create the file under the applicationDataDirectory
 				var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
 
 				// Write a square version of the selected media to the file
-				file.write(e.media.imageAsThumbnail(e.media.width));
+				file.write(e.media.imageAsThumbnail(Alloy.Globals.detailSize));
 
 				// Add the model to the collection
 				Alloy.Collections.picture.create({
