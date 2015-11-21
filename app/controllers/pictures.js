@@ -96,7 +96,7 @@ function addPicture() {
 			setTimeout(function() {
 
 				// Create a unique filename
-				var filename = Ti.Platform.createUUID() + Alloy.Globals.detailSuffix + ((Alloy.Globals.logicalDensityFactor === 1) ? '' : '@' + Alloy.Globals.logicalDensityFactor + 'x') + '.jpg';
+				var filename = Ti.Platform.createUUID() + ((Alloy.Globals.logicalDensityFactor === 1) ? '' : '@' + Alloy.Globals.logicalDensityFactor + 'x') + '.jpg';
 
 				// Create the file under the applicationDataDirectory
 				var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, filename);
