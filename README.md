@@ -1,6 +1,6 @@
 # iOS 9 3D Touch Sample App
 
-> **NOTE:** This Sample App requires Titanium [5.1.0.RC](https://community.appcelerator.com/topic/3976/sdk-5-1-0-rc-and-studio-4-4-0-rc-now-available) or later and Alloy 1.7.25 or later, which is included in AppC CLI Core Package 5.1.0-61 or later.
+> **NOTE:** This Sample App requires Titanium 5.1.0, Alloy 1.7.26 and AppC CLI Core Package 5.1.0 or later. It also requires iOS 9 and an iPhone 6S device or later.
 
 This sample app demonstrates the new [3D Touch](http://www.apple.com/iphone-6s/3d-touch/) capabilities of the iPhone 6S. Titanium 5.1 implements [Peek and Pop](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/3DTouch.html#//apple_ref/doc/uid/TP40006556-CH71-SW1) and [Home Screen Quick Actions](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/3DTouch.html#//apple_ref/doc/uid/TP40006556-CH71-SW1). The new [force-properties](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITouch_Class/index.html#//apple_ref/occ/instp/UITouch/force) available in touch-events will be [added in a later release](https://jira.appcelerator.org/browse/TIMOB-19492) as well as [support for the related Apple Pencil](https://jira.appcelerator.org/browse/TIMOB-19667).
 

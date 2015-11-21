@@ -15,6 +15,9 @@
     <property name="ti.ui.defaultunit" type="string">dp</property>
     <ios>
 
+        <!-- this sampel requires iOS 9.1 or later -->
+        <min-ios-ver>9.1</min-ios-ver>
+
         <!-- optional app-thinning is required to use custom icons -->
         <use-app-thinning>true</use-app-thinning>
 
