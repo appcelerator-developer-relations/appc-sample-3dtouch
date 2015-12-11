@@ -94,7 +94,7 @@ Use the top-left icon on the *Pictures* tab to switch between thumbnails that ea
 
 For both views we create the previewContext in [preview.xml](app/views/preview.xml). As from Alloy 1.7.25 and AppC CLI Core Package 5.1.0 you can define these in XML. In classic this would look like:
 
-	$.previewContext = Ti.UI.createPreviewContext({
+	$.previewContext = Ti.UI.iOS.createPreviewContext({
 		contentHeight: 400,
 		preview: $.preview,
 		actions: createActions()
