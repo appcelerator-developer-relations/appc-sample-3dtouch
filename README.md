@@ -87,7 +87,9 @@ Press firmly on one of the thumbnails in the sample app to play with Peek and Po
 ![preview](docs/preview.png)
 
 ### PreviewContext
-To add Peek & Pop to a individual view or a List/Table View, create an instance of [Ti.UI.iOS.createPreviewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-method-createPreviewContext) and set it to the view's [previewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.View-property-previewContext) property. When used in a List/Table View you need to listen to the PreviewContext's [peek](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-peek) event and update the view set to its `preview` property.
+To add Peek & Pop to a individual view or a ListView, create an instance of [Ti.UI.iOS.createPreviewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS-method-createPreviewContext) and set it to the view's [previewContext](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.View-property-previewContext) property. When used in a ListView you need to listen to the PreviewContext's [peek](https://docs.appcelerator.com/platform/latest/#!/api/Titanium.UI.iOS.PreviewContext-event-peek) event and update the view set to its `preview` property.
+
+> **NOTE:** TableView [currently](https://jira.appcelerator.org/browse/TIMOB-20139) does not (fully) support Peek & Pop.
 
 ### Sample
 Use the top-left icon on the *Pictures* tab to switch between thumbnails that each individually have a preview context and a ListView where all items share a preview context.
