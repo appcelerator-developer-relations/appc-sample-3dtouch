@@ -26,11 +26,18 @@
 	// FIXME: Using 25% will somehow wrap the 4th view
 	Alloy.Globals.thumbnailSize = Ti.Platform.displayCaps.platformWidth / 4;
 
-	// This variable would have been global without the SEF
-	var versions = Ti.version.split('.');
-
 	// Used in views/index.xml
 	// This sample requires Ti SDK 5.1.0 or later
-	Alloy.Globals.isSupported = (parseInt(versions[0], 10) >= 5 && parseInt(versions[1], 10) >= 1);
+	Alloy.Globals.isSupported = isSupported();
 
 })(this);
+
+function isSupported() {
+	var version = 0;
+	
+	_.each(Ti.version.split('.'), function(_version) {
+		version += _version;
+	});
+		
+	return version >= 0510;
+}
